@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title >查看企业信息</title>
+</head>
+<body>
+   <br>
+   <ul th:if="${errorCode}">
+       错误代码：  <span th:text="${errorCode}"></span><br>
+       错误信息：  <span th:text="${errorMessage}"></span><br>
+   </ul>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>企业名称</th>
+                <th>用户名称</th>
+                <th>身份证号码</th>
+                <th>统一信用代码</th>
+                <th>用户ID</th>
+            </tr>
+            <tr th:each="prod : ${items}" th:class="${prodStat.odd}? 'odd'">
+                <td th:text="${prod.id}">Onions</td>
+                <td th:text="${prod.compName}">Onions</td>
+                <td th:text="${prod.opertName}">2.41</td>
+                <td th:text="${prod.opertCertNo}">yes</td>
+                <td th:text="${prod.tydmCode}">yes</td>
+                <td th:text="${prod.userCode}">yes</td>
+                <td>
+                    <input type="button" value="修改" th:onclick="toEdit([[${prod.id}]]);">
+                    <input type="button" value="删除" th:onclick="toDelete([[${prod.id}]]);">
+                    <input type="button" value="复制" th:onclick="copy([[${prod.id}]]);">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="button" value="新增" onclick="toAdd()"></td>
+            </tr>
+
+        </table>
+   <script language="javascript" type="text/javascript">
+    function  toAdd(){
+        window.location.href="toAdd";
+
+    }
+    function  toEdit(id){
+        window.location.href="toEdit?id="+id;
+    }
+    function  toDelete(id){
+        window.location.href="del?id="+id;
+    }
+
+    function  copy(id){
+        window.location.href="copy?id="+id;
+    }
+
+</script>
+
+</body>
+
+
+</html>

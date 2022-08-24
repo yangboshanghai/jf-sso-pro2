@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -38,10 +39,14 @@ public class SsoController {
             ModelAndView mv=new ModelAndView("main");
             String toUrl="M001001";//固定值，跳转的蜀通宝页面
             session.setAttribute("userId","uat");
+            session.setMaxInactiveInterval(60000);//设置session的有效时间
             mv.addObject("href","loginjf?toUrl="+toUrl);
             return mv;
         }else{
-            return new ModelAndView("login");
+            Map map=new HashMap();
+            map.put("errorCode","E1001");
+            map.put("errorMessage","用户名称或者密码错误，请重新登录");
+            return new ModelAndView("login").addAllObjects(map);
         }
     }
 
@@ -197,7 +202,6 @@ public class SsoController {
         item.setWtsCertVersion(wtsCertVersion);
         JSONObject json=  jfSsoService.regedit(item);
         return json;
-
     }
 
     @ResponseBody

@@ -2,9 +2,9 @@
 <head>登录失败</head>
 <body>
 
-错误代码：${errorCode}<br>
-错误信息：${errorMessage}
+错误代码：<span th:text="${errorCode}"></span><br>
+错误信息：<span th:text="${errorMessage}"></span>
 
-<a th:href="@{${href}}">蜀通宝</a>
+<a th:href="login">返回</a>
 </body>
 </html>

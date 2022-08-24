@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title th:text="${user.userName}!=null?'修改':'新增'">新增</title>
+</head>
+<body>
+   <br>
+   <ul th:if="${errorCode}">
+       错误代码：  <span th:text="${errorCode}"></span><br>
+       错误信息：  <span th:text="${errorMessage}"></span><br>
+   </ul>
+   <form action="save">
+       <input type="hidden" name="id" th:value="${user.id}">
+       <table>
+           <tr><td>用户名</td><td><input name="userName" type="text" th:value="${user.userName}" ></td></tr>
+           <tr><td>密码</td><td><input name="password" type="password" th:value="${user.password}"></td></tr>
+           <tr><td></td><td><input type="submit" value="保存"></td></tr>
+       </table>
+   </form>
+        </table>
+   <script language="javascript" type="text/javascript">
+
+
+</script>
+
+</body>
+
+
+</html>
