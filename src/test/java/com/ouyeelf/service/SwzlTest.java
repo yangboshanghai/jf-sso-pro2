@@ -1,9 +1,6 @@
 package com.ouyeelf.service;
 
-import cn.hutool.http.Header;
-import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpResponse;
-import cn.hutool.http.HttpUtil;
+import cn.hutool.http.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ouyeelf.entity.ClientInfo;
@@ -19,11 +16,12 @@ public class SwzlTest {
     String clientId="SD_001";
     String clientSecret="7a8e65f3ed31c47a8716b87fed649c27";
     String publicKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCaOTalMyKYta10Jwav5S20jY/qiVbTjZ9+M/kYQd4P9QGsZMs+QBUCtQOLKt082uK6oHIS3Nw4zyrJp3vOfi8uIj/VI0Dviaml/peKAG/LDGNm72tUZkUpl0qJZ8G7BhQi2yw930DoOs2+li345WoSrNQPcAlbarazd3VmQEf9xQIDAQAB";
-    String service_token="K2N+EbVfkYdNpefzFnpdrcaGQjLfTYSgfgIw6nTHmd8gSdFVnDNWlw8JdlLYOktzF5mW7Sc2/QXUGI8OYkk5Ng==";
+    String service_token="K2N+EbVfkYdNpefzFnpdrZ6FjR1v6a5Qq1Bt2+pP1wVUcF0I8r3grdOn7DEcjAAlF5mW7Sc2/QXUGI8OYkk5Ng==";
 
     @Test
     public void regedit() throws Exception {
         String url2=url+"user/regedit";
+        System.out.println(url2);
         //企业名称
         String compName="";
         //企业类型代码
@@ -79,11 +77,12 @@ public class SwzlTest {
         String orderId=System.currentTimeMillis()+"";
         Map header=new HashMap();//将服务端TOKEN放在http header中
         header.put("service_token",service_token);
+        header.put("Content-Type", "application/json");
         System.out.println(url);
 
         Map infParam=new HashMap();//接口参数
         infParam.put("orderId",orderId);
-        infParam.put("ssoToken","93285be33b094525a8def2eebfb12bef");
+        infParam.put("ssoToken","0793a75048dd452fa2ba10c2455d3351");
         infParam.put("compName",compName);
         infParam.put("compType",compType);
         infParam.put("registWay",registWay);
@@ -130,7 +129,7 @@ public class SwzlTest {
     }
 
     public void getServiceToken() throws Exception {
-        String orderId=System.currentTimeMillis()+"";
+        String orderId="S"+System.currentTimeMillis()+"";
         Map encryptParam=new HashMap<>();//对用户名和密码进行加密
         encryptParam.put("clientId",clientId);
         encryptParam.put("clientSecret",clientSecret);
@@ -146,7 +145,9 @@ public class SwzlTest {
         System.out.println(body);
         String   url2=url+"auth/getServiceToken";//接口地址
         System.out.println(url2);
-        String outstr= HttpUtil.post(url2,body);
+        HashMap<String, String> headers = new HashMap<>();//存放请求头，可以存放多个请求头
+        headers.put("Content-Type", "application/json");
+        String outstr= HttpRequest.post(url2).addHeaders(headers).body(body).execute().body();
         System.out.println(outstr);
         JSONObject json=JSON.parseObject(outstr);
         String isSuccess=json.getString("isSuccess");
@@ -177,7 +178,7 @@ public class SwzlTest {
 //        String service_token="K2N+EbVfkYdNpefzFnpdrQrHDLm5SCAVXJPrT2od0DicrGm4vQ0IS8lfzEOUsgalF5mW7Sc2/QXUGI8OYkk5Ng==";
         String mobile="13309098080";//用户手机号码
         String idNo="123577";//用户身份证号码
-        String userName="资管计划CAP名称一";//用户名称
+        String userName="资管计划CAP名称一22";//用户名称
         String businessCreditNo="91431200MA4L4NH655";//统一社会信用代码
         String companyName="资管计划CAP名称一";//公司名称
         String userId="00014";//用户ID
@@ -242,6 +243,7 @@ public class SwzlTest {
         System.out.println(url2);
         Map header=new HashMap();//将服务端TOKEN放在http header中
         header.put("service_token",item.getServiceToken());
+        header.put("Content-Type", "application/json");
         String outstr=HttpRequest.post(url2).addHeaders(header).body(body).execute().body();
        return outstr;
 

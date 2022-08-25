@@ -45,7 +45,9 @@ public class JfSsoImplService implements JfSsoService {
         String body=JSON.toJSONString(infParam);
         String url2=url+"auth/getServiceToken";//接口地址
         System.out.println(infParam);
-        String outstr= HttpUtil.post(url2,body);
+        HashMap<String, String> headers = new HashMap<>();//存放请求头，可以存放多个请求头
+        headers.put("Content-Type", "application/json");
+        String outstr= HttpRequest.post(url2).addHeaders(headers).body(body).execute().body();
         System.out.println(outstr);
         logger.info("接口返回值："+outstr);
         JSONObject json= JSON.parseObject(outstr);
@@ -89,6 +91,7 @@ public class JfSsoImplService implements JfSsoService {
         System.out.println(url2);
         Map header=new HashMap();//将服务端TOKEN放在http header中
         header.put("service_token",item.getServiceToken());
+        header.put("Content-Type", "application/json");
         String outstr= HttpRequest.post(url2).addHeaders(header).body(body).execute().body();
         JSONObject json=JSON.parseObject(outstr);
         String isSuccess=json.getString("isSuccess");
@@ -149,6 +152,7 @@ public class JfSsoImplService implements JfSsoService {
         String body= JSON.toJSONString(infParam);
         String url2=url+"user/regedit";
         System.out.println(url2);
+        header.put("Content-Type", "application/json");
         String outstr= HttpRequest.post(url2).addHeaders(header).body(body).execute().body();
         System.out.println(outstr);
         JSONObject json=JSON.parseObject(outstr);
@@ -160,8 +164,6 @@ public class JfSsoImplService implements JfSsoService {
             if(status.equals("0")){//用户公司已经存在
                 System.out.println("用户注册成功，返回值："+data);
                 //这里写入后续处理逻辑
-
-
 
             }else{
                 System.out.println("生成的服务端失败，错误代码为：" + status);

@@ -1,6 +1,10 @@
 <html>
 <head>
     <title th:text="${user.compName}!=null?'修改':'新增'">新增</title>
+    <style>
+        table{text-align: center;width: 100%;border-collapse:collapse}
+        table td{border:1px solid #999;}
+    </style>
 </head>
 <body>
    <br>
@@ -11,32 +15,32 @@
    <form action="save">
        <input type="hidden" name="id" th:value="${user.id}">
        <table>
-           <tr><td>企业名称</td><td><input name="compName" type="text" th:value="${user.compName}" ></td></tr>
-           <tr><td>企业类型代码</td><td><input name="compType" type="text" th:value="${user.compType}" ></td></tr>
-           <tr><td>注册方式代码</td><td><input name="registWay" type="text" th:value="${user.registWay}" ></td></tr>
-           <tr><td>来源平台标识</td><td><input name="registSource" type="text" th:value="${user.registSource}" ></td></tr>
-           <tr><td>统一社会信用代码</td><td><input name="tydmCode" type="text" th:value="${user.tydmCode}" ></td></tr>
-           <tr><td>企业操作员登录账号</td><td><input name="userCode" type="text" th:value="${user.userCode}" ></td></tr>
-           <tr><td>企业操作员登录密码</td><td><input name="userPassword" type="text" th:value="${user.userPassword}" ></td></tr>
-           <tr><td>手机号码</td><td><input name="opertPhone" type="text" th:value="${user.opertPhone}" ></td></tr>
-           <tr><td>操作员姓名</td><td><input name="opertName" type="text" th:value="${user.opertName}" ></td></tr>
-           <tr><td>操作员证件类型</td><td><input name="opertCertType" type="text" th:value="${user.opertCertType}" ></td></tr>
-           <tr><td>操作员证件号</td><td><input name="opertCertNo" type="text" th:value="${user.opertCertNo}" ></td></tr>
-           <tr><td>操作员证件截止日期</td><td><input name="opertCertEndDate" type="text" th:value="${user.opertCertEndDate}" ></td></tr>
-           <tr><td>法人姓名</td><td><input name="reptName" type="text" th:value="${user.reptName}" ></td></tr>
-           <tr><td>法人联系方式</td><td><input name="reptPhone" type="text" th:value="${user.reptPhone}" ></td></tr>
-           <tr><td>法人证件类型</td><td><input name="reptIdType" type="text" th:value="${user.reptIdType}" ></td></tr>
-           <tr><td>法人证件号码</td><td><input name="reptIdNo" type="text" th:value="${user.reptIdNo}" ></td></tr>
-           <tr><td>法人证件过期时间</td><td><input name="reptIdExpDate" type="text" th:value="${user.reptIdExpDate}" ></td></tr>
-           <tr><td>新版营业执照地址</td><td><input name="busCertFileUrl" type="text" th:value="${user.busCertFileUrl}" ></td></tr>
-           <tr><td>新版营业执照文件保存名称</td><td><input name="busCertFileName" type="text" th:value="${user.busCertFileName}" ></td></tr>
-           <tr><td>法人附件正面地址</td><td><input name="frCertFileUrl_1" type="text" th:value="${user.frCertFileUrl_1}" ></td></tr>
-           <tr><td>法人附件正面文件保存名称</td><td><input name="frCertFileName_1" type="text" th:value="${user.frCertFileName_1}" ></td></tr>
-           <tr><td>法人附件反面地址</td><td><input name="frCertFileUrl_2" type="text" th:value="${user.frCertFileUrl_2}" ></td></tr>
-           <tr><td>法人附件反面文件保存名称</td><td><input name="frCertFileName_2" type="text" th:value="${user.frCertFileName_2}" ></td></tr>
-           <tr><td>操作员委托书文件地址</td><td><input name="wtsCertFileUrl" type="text" th:value="${user.wtsCertFileUrl}" ></td></tr>
-           <tr><td>操作员委托书文件保存名称</td><td><input name="wtsCertFileName" type="text" th:value="${user.wtsCertFileName}" ></td></tr>
-           <tr><td>委托书版本类型非必填项</td><td><input name="wtsCertVersion" type="text" th:value="${user.wtsCertVersion}" ></td></tr>
+           <tr><td>企业名称</td><td style="width:80%";><input name="compName" type="text" th:value="${user.compName}"style="width:80%";></td></tr>
+           <tr><td>企业类型代码</td><td><input name="compType" type="text" th:value="${user.compType}" style="width:80%"; ></td></tr>
+           <tr><td>注册方式代码</td><td><input name="registWay" type="text" th:value="${user.registWay}" style="width:80%";></td></tr>
+           <tr><td>来源平台标识</td><td><input name="registSource" type="text" th:value="${user.registSource}" style="width:80%";></td></tr>
+           <tr><td>统一社会信用代码</td><td><input name="tydmCode" type="text" th:value="${user.tydmCode}" style="width:80%";></td></tr>
+           <tr><td>企业操作员登录账号</td><td><input name="userCode" type="text" th:value="${user.userCode}" style="width:80%";></td></tr>
+           <tr><td>企业操作员登录密码</td><td><input name="userPassword" type="text" th:value="${user.userPassword}" style="width:80%";></td></tr>
+           <tr><td>手机号码</td><td><input name="opertPhone" type="text" th:value="${user.opertPhone}" style="width:80%";></td></tr>
+           <tr><td>操作员姓名</td><td><input name="opertName" type="text" th:value="${user.opertName}" style="width:80%";></td></tr>
+           <tr><td>操作员证件类型</td><td><input name="opertCertType" type="text" th:value="${user.opertCertType}" style="width:80%";></td></tr>
+           <tr><td>操作员证件号</td><td><input name="opertCertNo" type="text" th:value="${user.opertCertNo}" style="width:80%";></td></tr>
+           <tr><td>操作员证件截止日期</td><td><input name="opertCertEndDate" type="text" th:value="${user.opertCertEndDate}" style="width:80%";></td></tr>
+           <tr><td>法人姓名</td><td><input name="reptName" type="text" th:value="${user.reptName}" style="width:80%";></td></tr>
+           <tr><td>法人联系方式</td><td><input name="reptPhone" type="text" th:value="${user.reptPhone}" style="width:80%";></td></tr>
+           <tr><td>法人证件类型</td><td><input name="reptIdType" type="text" th:value="${user.reptIdType}" style="width:80%";></td></tr>
+           <tr><td>法人证件号码</td><td><input name="reptIdNo" type="text" th:value="${user.reptIdNo}" style="width:80%";></td></tr>
+           <tr><td>法人证件过期时间</td><td><input name="reptIdExpDate" type="text" th:value="${user.reptIdExpDate}" style="width:80%";></td></tr>
+           <tr><td>新版营业执照地址</td><td><input name="busCertFileUrl" type="text" th:value="${user.busCertFileUrl}" style="width:80%";></td></tr>
+           <tr><td>新版营业执照文件保存名称</td><td><input name="busCertFileName" type="text" th:value="${user.busCertFileName}" style="width:80%";></td></tr>
+           <tr><td>法人附件正面地址</td><td><input name="frCertFileUrl_1" type="text" th:value="${user.frCertFileUrl_1}" style="width:80%";></td></tr>
+           <tr><td>法人附件正面文件保存名称</td><td><input name="frCertFileName_1" type="text" th:value="${user.frCertFileName_1}" style="width:80%";></td></tr>
+           <tr><td>法人附件反面地址</td><td><input name="frCertFileUrl_2" type="text" th:value="${user.frCertFileUrl_2}" style="width:80%";></td></tr>
+           <tr><td>法人附件反面文件保存名称</td><td><input name="frCertFileName_2" type="text" th:value="${user.frCertFileName_2}" style="width:80%";></td></tr>
+           <tr><td>操作员委托书文件地址</td><td><input name="wtsCertFileUrl" type="text" th:value="${user.wtsCertFileUrl}" style="width:80%";></td></tr>
+           <tr><td>操作员委托书文件保存名称</td><td><input name="wtsCertFileName" type="text" th:value="${user.wtsCertFileName}" style="width:80%";></td></tr>
+           <tr><td>委托书版本类型非必填项</td><td><input name="wtsCertVersion" type="text" th:value="${user.wtsCertVersion}" style="width:80%";></td></tr>
            <tr><td></td><td><input type="submit" value="保存"></td></tr>
        </table>
    </form>

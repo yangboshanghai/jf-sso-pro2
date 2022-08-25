@@ -42,7 +42,7 @@ public class Sso2Controller {
         if(user!=null){
             ModelAndView mv=new ModelAndView("main");
             String toUrl="M001001";//固定值，跳转的蜀通宝页面
-            session.setAttribute("userId","uat");
+            session.setAttribute("userId",user.getUserName());
             session.setMaxInactiveInterval(60000);//设置session的有效时间
             mv.addObject("href","loginjf?toUrl="+toUrl);
             return mv;
