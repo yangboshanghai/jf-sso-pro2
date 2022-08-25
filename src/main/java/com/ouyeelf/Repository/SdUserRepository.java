@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SdUserRepository extends JpaRepository<SdUser,String> {
 
-    @Query(value = "select * from tuser where username=? and password=?",nativeQuery = true)
-    User QueryByUserName(String userName,String password);
+    @Query(value = "select * from t_sduser where usercode=?",nativeQuery = true)
+    SdUser QueryByCode(String UserCode);
 
 
 }
