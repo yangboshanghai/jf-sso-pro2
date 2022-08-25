@@ -98,7 +98,7 @@ public class Sso2Controller {
         if(status.equals("S01")){//用户公司已经存在
             System.out.println("生成的用户token为："+ssoToken);
             //根据这个返回值需要拼接地址
-            String redirectUrl="http://testjfsso.ouyeelf.com/sso-web?ssoToken="+ssoToken+"&toUrl="+toUrl;
+            String redirectUrl="http://testjfsso.ouyeelf.com/sso-web?ssoToken="+ssoToken+"&toUrl="+toUrl+"&userId="+userId;
             return new ModelAndView("redirect:"+redirectUrl);
         }else if(status.equals("E01")){//需要走反向注册接口，对公司进行注册
             JSONObject json2= regedit(user,ssoToken,serviceToken);
