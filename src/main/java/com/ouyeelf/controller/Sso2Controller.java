@@ -90,7 +90,9 @@ public class Sso2Controller {
         //用户IP
 //        String ip="10.50.10.352";
         ClientInfo item=new ClientInfo( orderId,  serviceToken,  mobile,  idNo,  userName,  businessCreditNo,  companyName,  userId,  companyId,  ip,userAgent);
+        System.out.println("ClientInfo:"+item);
         JSONObject json=  jfSsoService.getClientToken(item);
+        System.out.println("返回值:"+json);
         String status=json.getString("status");
         String ssoToken=json.getString("data");
         String message=json.getString("message");
@@ -98,7 +100,8 @@ public class Sso2Controller {
         if(status.equals("S01")){//用户公司已经存在
             System.out.println("生成的用户token为："+ssoToken);
             //根据这个返回值需要拼接地址
-            String redirectUrl="http://testjfsso.ouyeelf.com/sso-web?ssoToken="+ssoToken+"&toUrl="+toUrl+"&userId="+userId;
+            String redirectUrl="http://testjfsso.ouyeelf.com/sso-web?token="+ssoToken+"&toUrl="+toUrl+"&userId="+userId;
+            System.out.println("redirectUrl："+redirectUrl);
             return new ModelAndView("redirect:"+redirectUrl);
         }else if(status.equals("E01")){//需要走反向注册接口，对公司进行注册
             JSONObject json2= regedit(user,ssoToken,serviceToken);
@@ -107,6 +110,7 @@ public class Sso2Controller {
             String message2=json2.getString("message");
             if(status2.equals("0")){
                 //再执行一次
+                System.out.println("再次跳转执行跳转：loginjf(toUrl,session,request)");
                 loginjf(toUrl,session,request);
             }else{
                 System.out.println("注册失败");
@@ -207,6 +211,7 @@ public class Sso2Controller {
         item.setWtsCertFileName(wtsCertFileName);
         item.setWtsCertVersion(wtsCertVersion);
         JSONObject json=  jfSsoService.regedit(item);
+        System.out.println("反向注册："+json);
         return json;
     }
 
