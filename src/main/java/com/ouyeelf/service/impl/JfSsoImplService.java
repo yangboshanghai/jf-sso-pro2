@@ -98,6 +98,7 @@ public class JfSsoImplService implements JfSsoService {
         String status=json.getString("status");
         String ssoToken=json.getString("data");
         String message=json.getString("message");
+        System.out.println(outstr);
         if(isSuccess.equals("true")){ //接口调用成功
             if(status.equals("S01")){//用户公司已经存在
                 System.out.println("生成的用户token为："+ssoToken);

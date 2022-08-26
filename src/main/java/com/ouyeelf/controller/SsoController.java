@@ -27,6 +27,10 @@ public class SsoController {
 
     @Resource
     JfSsoService jfSsoService;
+    @RequestMapping("index")
+    public ModelAndView index() {
+        return new ModelAndView("index");
+    }
 
     @RequestMapping("login")
     public ModelAndView login(String username, String password, HttpSession session) {

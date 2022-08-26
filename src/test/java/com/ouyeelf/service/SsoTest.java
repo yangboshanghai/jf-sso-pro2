@@ -15,11 +15,11 @@ public class SsoTest {
     String clientId="SSO_WEB";
     String clientSecret="a1cf82d4b6e566be8943c6a4084635d2";
     String publicKey="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXOkmfyF7Vl5CNc5IhFkoctdMuUVz9EnU9+1esKaAKWTmLNizqsjfqkf0YS2okkn1cUYO1cUf9zs3FhHs00Sp7tPLRit9QD1yFRuXujbMH80dUteUmiEPjDpB9bvIU6z0sN4pRBEnstoxhGnEDBgPaoDzRr/guM6beMfIGKD4aqQIDAQAB";
-    String service_token="O6Iy3tTMbCEtM4KJQ5FBs29CIHZ16dreJFpuM7XpMqlPT2Q8zmkUIVALutmqXlaTvz0RBxfIHbL9MwAfLhWfVg==";
+    String service_token="zRy+uTwM64h5gXbZB3xh5F8CPa747KVYKllr+aA+pDtctMLrplCN+14UawS4WN4donFdfwxL4g/HULTiYqHaGQ==";
     //内部
     String ssoToken="JFoNZj+mPBzMme/amZo4Ox1qlk+DTTuCseP+zxPZ1NW85+CV5Rc05X7I5kBjZPwn";
     //外部
-    String ssoToken_w="3b9d5306976744758accd58ffedd91ad";
+    String ssoToken_w="181ebde1030a4a288d2d9c17156d4097";
     @Test
     public void getServiceToken() throws Exception {
         String orderId=System.currentTimeMillis()+"";
@@ -32,6 +32,7 @@ public class SsoTest {
         infParam.put("orderId",orderId);
         infParam.put("clientId",clientId);
         infParam.put("param",param);
+        System.out.println(infParam);
         String body=JSON.toJSONString(infParam);
         url2=url2+"getServiceToken";//接口地址
         HashMap<String, String> header = new HashMap<>();//存放请求头，可以存放多个请求头
@@ -52,11 +53,14 @@ public class SsoTest {
         infParam.put("orderId",orderId);
         infParam.put("ssoToken",ssoToken);
         infParam.put("toUrl",toUrl);
+        System.out.println(infParam);
         String body= JSON.toJSONString(infParam);
+        System.out.println(body);
         Map header=new HashMap();//将服务端TOKEN放在http header中
         header.put("service_token",service_token);
         header.put("Content-Type", "application/json");
         System.out.println(url);
+        System.out.println(header);
         String outstr= HttpRequest.post(url).addHeaders(header).body(body).execute().body();
         System.out.println(outstr);
 //       {"isSuccess":true,"status":"9101","message":"用户存在，请绑定用户","orderId":null,"data":{"companyName":"资管计划CAP名称一","userName":"资********一","phone":"133****8080","certNo":null,"ssoToken":"JFoNZj+mPBzMme/amZo4Ox1qlk+DTTuCseP+zxPZ1NW85+CV5Rc05X7I5kBjZPwn"}}
